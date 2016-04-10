@@ -17,10 +17,6 @@ class UserData {
 		Executor::doit($sql);
 	}
 
-	public static function delBy($k,$v){
-		$sql = "delete from ".self::$tablename." where $k=\"$id\"";
-		Executor::doit($sql);
-	}
 	public function del(){
 		$sql = "delete from ".self::$tablename." where id=$this->id";
 		Executor::doit($sql);
