@@ -13,6 +13,8 @@ include "controller/Bootload.php";
 include "controller/Action.php";
 
 include "controller/class.upload.php";
+// 28 sep 2016
+include "controller/Form.php";
 
 
 ?>
