@@ -26,7 +26,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="./">INICIO</a></li>
-        <li><a href="./?view=forms">FORMULARIOS</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">COMPONENTES <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="./?view=forms">Formularios</a></li>
+            <li><a href="./?view=table">Tablas</a></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Crud <span class="caret"></span></a>
           <ul class="dropdown-menu">
