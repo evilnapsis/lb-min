@@ -22,3 +22,16 @@ create table user(
 
 /* insert user example */
 insert into user (name,username,password,created_at) value ("Administrator","admin",sha1(md5("admin")),NOW());
+
+
+create table person(
+	id int not null auto_increment primary key,
+	name varchar(50),
+	lastname varchar(50),
+	email varchar(255),
+	address varchar(255),
+	phone varchar(255),
+	image varchar(255),
+	created_at datetime
+);
+

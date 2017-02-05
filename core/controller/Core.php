@@ -31,6 +31,10 @@ class Core {
 		echo "<script>window.location='".$url."';</script>";
 	}
 
+	public static function alert($txt){
+		echo "<script>alert('".$txt."');</script>";
+	}
+
 	public static function includeJS(){
 		$path = "res/js/";
 		$handle=opendir($path);
