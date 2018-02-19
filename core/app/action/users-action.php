@@ -9,8 +9,8 @@ if(count($_POST)>0){
 	$user->email = $_POST["email"];
 	$user->password = sha1(md5($_POST["password"]));
 	$user->add();
-	Core::alert("Usuario eliminado!");
-	Core::redir("./?view=users");
+	Core::alert("¡Usuario añadido!");
+	Core::redir("./?view=users&o=all");
 }
 }
 else if(isset($_GET["o"]) && $_GET["o"]=="upd"){

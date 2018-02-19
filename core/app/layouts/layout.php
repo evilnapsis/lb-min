@@ -43,7 +43,7 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
             <li><a href="./?view=home">Mi inicio</a></li>
             <li><a href="./?view=users&o=all">Usuarios</a></li>
             <li class="divider"></li>
-            <li><a href="./?view=access&o=logout">Salir</a></li>
+            <li><a href="./?action=access&o=logout">Salir</a></li>
           </ul>
         </li>
         <?php endif; ?>
