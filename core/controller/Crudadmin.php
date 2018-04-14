@@ -15,6 +15,16 @@ class Crudadmin{
 		$model->add();
 	}
 
+	public static function update($schema,$model,$data,$action="edit"){
+		foreach($schema as $k =>$v){
+			if($v["form"]!="hidden"){
+			if(in_array($action, explode(",", $v["actions"]))){
+				$model->{$k} = $_POST[$k];
+			}
+			}
+		}
+		$model->update();
+	}
 
 
 	public static function prepareFields($schema,$action="add"){
@@ -53,6 +63,17 @@ class Crudadmin{
 
 	public static function buildIFromFV($tbn,$fs,$vs){
 		return "insert into ".$tbn." (".implode(",", $fs).") values (".implode(",", $vs).")";
+	}
+
+	public static function buildUFromFV($tbn,$fs,$vs,$id){
+		print_r($fs);
+		print_r($vs);
+		$ds = array();
+		for($i=0;$i<count($fs);$i++){
+			$ds[]=  $fs[$i]."=".$vs[$i];
+		}
+	$sql = "update ".$tbn." set ".implode(",", $ds)." where id=$id";
+	return $sql;
 	}
 
 	public static function buildS($tbn, $fields){

@@ -26,12 +26,22 @@ class Bs {
    	return '<a href="'.$href.'" class="btn btn-'.$btn.' btn-'.$size.'">'.$title.'</a>';
    }
 
-   public static function render_new(){
-		foreach(schema::$table_user as $su=>$sub){
-			echo Bs::fginput($sub["label"],"",$sub["form"],$su,$sub["required"]);
+   public static function render_new($schema,$action="add"){
+		foreach($schema as $su=>$sub){
+      if(in_array($action, explode(",", $sub["actions"]))){
+			 echo Bs::fginput($sub["label"],"",$sub["form"],$su,$sub["required"]);
+      }
 		}
-
    }
+
+   public static function render_edit($schema,$datamodel,$action="edit"){
+    foreach($schema as $su=>$sub){
+      if(in_array($action, explode(",", $sub["actions"]))){
+        echo Bs::fginput($sub["label"],$datamodel->{$su},$sub["form"],$su,$sub["required"]);
+      }
+    }
+   }
+
 }
 
 ?>

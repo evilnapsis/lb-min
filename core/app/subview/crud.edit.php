@@ -7,9 +7,11 @@
 <div class="panel-heading">Nuevo</div>
 <div class="panel-body">
 
-<form method="post" action="./?action=users&sa=add">
-	<?php Bs::render_new(schema::$table_user); ?>
-	<?=Bs::button('Acceder','submit'); ?>
+<form method="post" action="./?action=users&sa=update">
+	<?php 
+	$user = UserData::getById($_GET["id"]);
+	Bs::render_edit(schema::$table_user,$user); ?>
+	<?=Bs::button('Actualizar','submit',"success"); ?>
 </form>
 
 </div>

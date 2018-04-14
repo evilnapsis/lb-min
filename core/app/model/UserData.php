@@ -33,7 +33,10 @@ class UserData {
 	}
 
 	public function update(){
-		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",username=\"$this->username\",lastname=\"$this->lastname\",status=\"$this->status\",kind=\"$this->kind\" where id=$this->id";
+//		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",username=\"$this->username\",lastname=\"$this->lastname\",status=\"$this->status\",kind=\"$this->kind\" where id=$this->id";
+		$fs = Crudadmin::prepareFields(schema::$table_user,"edit");
+		$vs = Crudadmin::prepareValues(schema::$table_user,$this,"edit");
+		$sql = Crudadmin::buildUFromFV(self::$tablename,$fs, $vs,$this->id);
 		Executor::doit($sql);
 	}
 
