@@ -14,11 +14,11 @@ class ProductData {
 	public function add(){
 		//$sql = "insert into user (name,lastname,username,email,password,created_at) ";
 		//$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->email\",\"$this->password\",$this->created_at)";
-		$fs = Crudadmin::prepareFields(schema::$table_user,"add");
-		$vs = Crudadmin::prepareValues(schema::$table_user,$this,"add");
+		$fs = Crudadmin::prepareFields(schema::$product,"add");
+		$vs = Crudadmin::prepareValues(schema::$product,$this,"add");
 		$fs[]="created_at";
 		$vs[]="NOW()";
-		$sql = Crudadmin::buildIFromFV(self::$tablename,$fs, $vs);
+		echo $sql = Crudadmin::buildIFromFV(self::$tablename,$fs, $vs);
 		Executor::doit($sql);
 	}
 
@@ -34,8 +34,8 @@ class ProductData {
 
 	public function update(){
 //		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",username=\"$this->username\",lastname=\"$this->lastname\",status=\"$this->status\",kind=\"$this->kind\" where id=$this->id";
-		$fs = Crudadmin::prepareFields(schema::$table_user,"edit");
-		$vs = Crudadmin::prepareValues(schema::$table_user,$this,"edit");
+		$fs = Crudadmin::prepareFields(schema::$product,"edit");
+		$vs = Crudadmin::prepareValues(schema::$product,$this,"edit");
 		$sql = Crudadmin::buildUFromFV(self::$tablename,$fs, $vs,$this->id);
 		Executor::doit($sql);
 	}
@@ -63,7 +63,7 @@ class ProductData {
 	}
 
 	public static function getAll(){
-		$fs = Crudadmin::prepareFields(schema::$table_user,"view");
+		$fs = Crudadmin::prepareFields(schema::$product,"view");
 		 //$sql = "select * from ".self::$tablename;
 		$sql = Crudadmin::buildS(self::$tablename,$fs);
 		$query = Executor::doit($sql);

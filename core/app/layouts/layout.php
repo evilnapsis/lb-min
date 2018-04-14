@@ -34,6 +34,7 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
           <ul class="dropdown-menu">
             <li><a href="./?view=crud&sb=all">Crud de usuarios</a></li>
             <li><a href="./?view=cats&opt=all">Crud de categorias</a></li>
+            <li><a href="./?view=products&opt=all">Crud de productos</a></li>
           </ul>
         </li>
         <li class="dropdown">

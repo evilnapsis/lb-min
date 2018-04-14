@@ -4,13 +4,13 @@ if(Core::g("opt","all")):
 <div class="container">
 <div class="row">
 <div class="col-md-12">
-<h1>CATEGORIAS</h1>
-<?=Bs::a("Nuevo","./?view=cats&opt=new");?>
+<h1>Productos</h1>
+<?=Bs::a("Nuevo","./?view=products&opt=new");?>
 <br><br>
 <?php Core::getFlashes(); 
-$fields = Crudadmin::prepareFields(schema::$category,"view");
-$labels = Crudadmin::prepareLabels(schema::$category,"view");
-$users = CategoryData::getAll();
+$fields = Crudadmin::prepareFields(schema::$product,"view");
+$labels = Crudadmin::prepareLabels(schema::$product,"view");
+$users = ProductData::getAll();
 $tablearray = array();
 $labels[] = "";
 $tablearray["header"]=$labels;
@@ -19,20 +19,47 @@ foreach($users as $u){
 	$d = array();
 	foreach($fields as $f){
 		// hacemos una comparacion cuando vallamos a mostrar imagenes, para cambiar la forma en que se van a mostrar
-		$d[] = $u->{$f}; 
+		if($f=="image"){
+			if($u->{$f}!=""){
+				$d[]= "<img src='storage/images/".$u->{$f}."' style='width: 48px; height:48px;'>";
+			}else{
+				$d[]="";
+			}
+		}
+		else if($f=="category_id"){
+			if($u->{$f}!=""){
+				$d[] = CategoryData::getById($u->{$f})->name;
+			}else{
+				$d[]= "";
+			}
+		}
+		else if($f=="price"){
+		$d[] = "$ ".$u->{$f}; 	
+		}
+		else{
+		$d[] = $u->{$f}; 	
+		}
 	}
-	$d[] = Bs::a("Editar","./?view=cats&opt=edit&id=".$u->id,"warning","xs")." ".Bs::a("Eliminar","./?action=cats&opt=del&id=".$u->id,"danger","xs");
+	$d[] = Bs::a("Editar","./?view=products&opt=edit&id=".$u->id,"warning","xs")." ".Bs::a("Eliminar","./?action=products&opt=del&id=".$u->id,"danger","xs");
 	$data[]=$d;
 }
 $tablearray["body"]=$data;
 
 ?>
+<?php if(count($users)>0):?>
 <div class="panel panel-default">
-<div class="panel-heading">Categorias</div>
+<div class="panel-heading">Productos</div>
 
-<?=Table::render($tablearray);?>
+<?php
+echo Table::render($tablearray);
+
+?>
 </div>
+<?php else:
+	echo "<p class='alert alert-warning'>No hay Productos</p>";
+endif; 
 
+?>
 </div>
 </div>
 </div>
@@ -40,15 +67,20 @@ $tablearray["body"]=$data;
 <div class="container">
 <div class="row">
 <div class="col-md-12">
-<h1>CATEGORIAS</h1>
-<h3>Nueva Categoria</h3>
+<h1>Productos</h1>
+<h3>Nuevo Producto</h3>
 <div class="panel panel-default">
 <div class="panel-heading">Nuevo</div>
 <div class="panel-body">
 
-<form method="post" action="./?action=cats&opt=add" enctype="multipart/form-data">
+<form method="post" action="./?action=products&opt=add" enctype="multipart/form-data">
 	<?php 
-	Bs::render_new(schema::$category); 
+	Bs::render_new(schema::$product,"add1");
+	$select = array();
+	$select[] = array("k"=>"","l"=>"-- SELECCIONE --");
+	foreach(CategoryData::getAll() as $c){ $select[] = array("k"=>$c->id,"l"=>$c->name); }
+	Bs::select("category_id",$select,""); 
+	Bs::render_new(schema::$product,"add2");
 	?>
 	<?=Bs::button('Agregar','submit'); ?>
 </form>
@@ -70,10 +102,18 @@ $tablearray["body"]=$data;
 <div class="panel-heading">Editar</div>
 <div class="panel-body">
 
-<form method="post" action="./?action=cats&opt=update" enctype="multipart/form-data">
+<form method="post" action="./?action=products&opt=update" enctype="multipart/form-data">
 	<?php 
-	$user = CategoryData::getById($_GET["id"]);
-	Bs::render_edit(schema::$category,$user); ?>
+	$user = ProductData::getById($_GET["id"]);
+	Bs::render_edit(schema::$product,$user,"add1");
+		$select = array();
+	$select[] = array("k"=>"","l"=>"-- SELECCIONE --");
+	foreach(CategoryData::getAll() as $c){ $select[] = array("k"=>$c->id,"l"=>$c->name); }
+	Bs::select("Categoria", "category_id",$select,$user->category_id); 
+ 
+	Bs::render_edit(schema::$product,$user,"add2"); 
+
+	?>
 	<?=Bs::button('Actualizar','submit',"success"); 
 	?>
 </form>

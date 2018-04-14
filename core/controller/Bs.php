@@ -17,7 +17,13 @@ class Bs {
        else if($type=="password"){ $value=""; }
        $required="";
        if($required==1){ $required="required"; }
+       if($type=="textarea"){
+        $html.="<textarea $required name='".$name_id."' id='".$name_id."' class='".$cl."' placeholder='".$label."'>".$value."</textarea>";
+      }
+       else{
        $html.='<input type="'.$type.'" $required name="'.$name_id.'" value="'.$value.'" class="'.$cl.'" id="'.$name_id.'" placeholder="'.$label.'">';
+
+       }
        $html.='</div>';
        return $html;
    }
@@ -30,7 +36,7 @@ class Bs {
    	return '<a href="'.$href.'" class="btn btn-'.$btn.' btn-'.$size.'">'.$title.'</a>';
    }
    // funcion para tomar todos los campos definidos en el schema.php y crear un formulario para insertar
-   public static function render_new($schema,$action="add"){
+   public static function render_new($schema,$action="add",$custom_field=array()){
 		foreach($schema as $su=>$sub){
       if(in_array($action, explode(",", $sub["actions"]))){
 			 echo Bs::fginput($sub["label"],"",$sub["form"],$su,$sub["required"]);
@@ -62,6 +68,23 @@ class Bs {
         }
       }
     }
+   }
+
+   public static function select($label,$name_id,$data,$selected="",$cl='form-control'){
+
+       $html= '<div class="form-group">';
+       $html.='<label for="'.$name_id.'">'.$label.'</label>';
+       $html.='<select $required name="'.$name_id.'" class="'.$cl.'" id="'.$name_id.'">';
+       foreach($data as $k){
+        //print_r($data);
+        $sel = "";
+        if($k['k']==$selected){ $sel='selected'; }
+
+       $html.="<option value='".$k['k']."' $sel>".$k['l']."</option>";
+      }
+       $html.="</select></div>";
+       echo $html;
+
    }
 
 }
