@@ -5,6 +5,7 @@
 class Table {
 
 	public static function render($data=array(), $extra=""){
+
 		$table = "<table class=\"table table-bordered\">";
 		$table .= "<thead>";
 		foreach($data["header"] as $h){

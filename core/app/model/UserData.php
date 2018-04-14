@@ -60,7 +60,9 @@ class UserData {
 	}
 
 	public static function getAll(){
-		 $sql = "select * from ".self::$tablename;
+		$fs = Crudadmin::prepareFields(schema::$table_user,"view");
+		 //$sql = "select * from ".self::$tablename;
+		$sql = Crudadmin::buildS(self::$tablename,$fs);
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new UserData());
 	}

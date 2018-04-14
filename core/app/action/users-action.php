@@ -1,45 +1,19 @@
 <?php
-if(isset($_SESSION["user_id"])){
-if(isset($_GET["o"]) && $_GET["o"]=="add"){
-if(count($_POST)>0){
-	$user = new UserData();
-	$user->name = $_POST["name"];
-	$user->lastname = $_POST["lastname"];
-	$user->username = $_POST["username"];
-	$user->email = $_POST["email"];
-	$user->password = sha1(md5($_POST["password"]));
-	$user->add();
-	Core::alert("Usuario eliminado!");
-	Core::redir("./?view=users");
-}
-}
-else if(isset($_GET["o"]) && $_GET["o"]=="upd"){
-if(count($_POST)>0){
-	$user = UserData::getById($_POST["user_id"]);
-	$user->name = $_POST["name"];
-	$user->lastname = $_POST["lastname"];
-	$user->username = $_POST["username"];
-	$user->email = $_POST["email"];
-	$user->update();
 
-	if($_POST["password"]!=""){
-		$user->password = sha1(md5($_POST["password"]));
-		$user->update_passwd();
-		Core::alert("Se ha actualizado el password!");
-	}
-	Core::alert("Usuario actualizado!");
-	Core::redir("./?view=users&o=all");
+if(Core::g("sa","add")){
+if(Crudadmin::valid(schema::$table_user)){
+	$_POST["password"] = sha1(md5($_POST["password"]));
+	Crudadmin::add(schema::$table_user,new UserData(), $_POST);
 }
+Core::addFlash("info","Nuevo usuario agregado exitosamente!");
+Core::addFlash("warning","Este es un flash message de advertencia de ejemplo!");
+Core::addFlash("danger","Este es un flash message de error de ejemplo!");
+Core::redir("./?view=crud&sb=all");
 }
-else if(isset($_GET["o"]) && $_GET["o"]=="del"){
-	$user = UserData::getById($_GET["id"]);
-	if($user->id!=$_SESSION["user_id"]){
-		$user->del();
-	}
-	Core::alert("Usuario eliminado!");
-	Core::redir("./?view=users&o=all");
+else if(Core::g("sa","del")){
+	$u  = UserData::getById($_GET["id"]);
+	$u->del();
+Core::addFlash("danger","[#$u->id] Eliminado exitosamente!");
+Core::redir("./?view=crud&sb=all");
 }
-}
-
-
 ?>

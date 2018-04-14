@@ -15,11 +15,23 @@ class Crudadmin{
 		$model->add();
 	}
 
+
+
 	public static function prepareFields($schema,$action="add"){
 		$fields = array();
 		foreach($schema as $k=>$v){
 			if(in_array($action, explode(",", $v["actions"]))){
 				$fields[] = $k;
+			}
+		}
+	return ($fields);
+	}
+
+	public static function prepareLabels($schema,$action="add"){
+		$fields = array();
+		foreach($schema as $k=>$v){
+			if(in_array($action, explode(",", $v["actions"]))){
+				$fields[] = $v["label"];
 			}
 		}
 	return ($fields);
@@ -41,6 +53,11 @@ class Crudadmin{
 
 	public static function buildIFromFV($tbn,$fs,$vs){
 		return "insert into ".$tbn." (".implode(",", $fs).") values (".implode(",", $vs).")";
+	}
+
+	public static function buildS($tbn, $fields){
+		$sql = "select ".implode(",", $fields)." from $tbn ";
+		return $sql;
 	}
 
 }
