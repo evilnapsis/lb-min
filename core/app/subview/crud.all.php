@@ -15,7 +15,17 @@ $data = array();
 foreach($users as $u){
 	$d = array();
 	foreach($fields as $f){
-		$d[] = $u->{$f}; 
+		// hacemos una comparacion cuando vallamos a mostrar imagenes, para cambiar la forma en que se van a mostrar
+		if($f=="image"){
+			if($u->{$f}!=""){
+				$d[]= "<img src='storage/images/".$u->{$f}."' style='width: 48px; height:48px;'>";
+			}else{
+				$d[]="";
+			}
+		}else{
+			$d[] = $u->{$f}; 
+		}
+
 	}
 	$d[] = Bs::a("Editar","./?view=crud&sb=edit&id=".$u->id,"warning","xs")." ".Bs::a("Eliminar","./?action=users&sa=del&id=".$u->id,"danger","xs");
 	$data[]=$d;

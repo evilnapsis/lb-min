@@ -9,7 +9,7 @@ class Crudadmin{
 	public static function add($schema,$model,$data){
 		foreach($schema as $k =>$v){
 			if($v["form"]!="hidden"){
-				$model->{$k} = $_POST[$k];
+				$model->{$k} = Core::$post[$k];
 			}
 		}
 		$model->add();
@@ -19,7 +19,7 @@ class Crudadmin{
 		foreach($schema as $k =>$v){
 			if($v["form"]!="hidden"){
 			if(in_array($action, explode(",", $v["actions"]))){
-				$model->{$k} = $_POST[$k];
+				$model->{$k} = Core::$post[$k];
 			}
 			}
 		}
@@ -66,8 +66,6 @@ class Crudadmin{
 	}
 
 	public static function buildUFromFV($tbn,$fs,$vs,$id){
-		print_r($fs);
-		print_r($vs);
 		$ds = array();
 		for($i=0;$i<count($fs);$i++){
 			$ds[]=  $fs[$i]."=".$vs[$i];

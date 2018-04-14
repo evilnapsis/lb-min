@@ -11,6 +11,16 @@ class Lb {
 	}
 
 	public function start(){
+		if(isset($_GET)){
+			foreach($_GET as $k=>$v){
+				Core::$get[$k]=$v;
+			}
+		}
+		if(isset($_POST)){
+			foreach($_POST as $k=>$v){
+				Core::$post[$k]=$v;
+			}
+		}
 		include "core/app/schema.php"; // sirve para definir todos los campos y comportamientos de los modulos
 		include "core/app/autoload.php";
 		include "core/app/init.php";

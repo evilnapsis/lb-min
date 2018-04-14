@@ -8,6 +8,9 @@
 class Core {
 
 	public static $debug_sql = false;
+	public static $post;
+	public static $get;
+	
 
 	public static function includeCSS(){
 		$path = "res/css/";

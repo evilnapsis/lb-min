@@ -27,7 +27,15 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="./"><i class='glyphicon glyphicon-home'></i> INICIO</a></li>
-        <li><a href="./?view=crud&sb=all"><i class='fa fa-cube'></i> CRUD</a></li>
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='fa fa-cube'></i> CRUD <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="./?view=crud&sb=all">Crud de usuarios</a></li>
+            <li><a href="./?view=cats&opt=all">Crud de categorias</a></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='glyphicon glyphicon-th-large'></i> MAS <span class="caret"></span></a>
           <ul class="dropdown-menu">

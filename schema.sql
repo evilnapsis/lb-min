@@ -38,3 +38,18 @@ create table person(
 	created_at datetime
 );
 
+create table category(
+	id int not null auto_increment primary key,
+	name varchar(50)
+);
+
+create table product(
+	id int not null auto_increment primary key,
+	name varchar(50),
+	description varchar(255),
+	image varchar(50),
+	price double,
+	category_id int,
+	created_at datetime,
+	foreign key (category_id) references category(id)
+);
