@@ -27,6 +27,30 @@ class Core {
 
 	}
 
+	public static function addFlash($type,$message){
+
+		$flash = "<p class='alert alert-".$type."'>".$message."<p>";
+		if(!isset($_SESSION["flashes"])){ $_SESSION["flashes"]=  array(); }
+
+		$flashes = $_SESSION["flashes"];
+		$flashes[] = $flash;
+		$_SESSION["flashes"] = $flashes;
+
+	}
+
+	public static function getFlashes(){
+
+		if(isset($_SESSION["flashes"])){
+			$flashes = $_SESSION["flashes"];
+			foreach($flashes as $f){
+				echo $f;
+			}
+			unset($_SESSION["flashes"]);
+		}
+
+	}
+
+
 	public static function redir($url){
 		echo "<script>window.location='".$url."';</script>";
 	}

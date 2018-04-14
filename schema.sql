@@ -1,3 +1,7 @@
+/* 
+@author: evilnapsis
+@brief: updated 2018 
+*/
 create database lbmin;
 use lbmin;
 
@@ -20,7 +24,6 @@ create table user(
 * kind: 1. root, 2. other, ...
 **/
 
-/* insert user example */
 insert into user (name,username,password,created_at) value ("Administrator","admin",sha1(md5("admin")),NOW());
 
 

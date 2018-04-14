@@ -2,7 +2,7 @@
 <div class="row">
 <div class="col-md-12">
 <div class="jumbotron">
-<h2>Wellcome to Lb-min v2.0</h2>
+<h2>Wellcome to Lb-min v3.0</h2>
 <p>Lb min es un micro framework en PHP para crear aplicaciones web de manera mas rapido.</p>
 </div>
 <div class="row">

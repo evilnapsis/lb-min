@@ -11,6 +11,7 @@ class Lb {
 	}
 
 	public function start(){
+		include "core/app/schema.php"; // sirve para definir todos los campos y comportamientos de los modulos
 		include "core/app/autoload.php";
 		include "core/app/init.php";
 	}

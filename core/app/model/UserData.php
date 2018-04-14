@@ -12,8 +12,13 @@ class UserData {
 	}
 
 	public function add(){
-		$sql = "insert into user (name,lastname,username,email,password,created_at) ";
-		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->email\",\"$this->password\",$this->created_at)";
+		//$sql = "insert into user (name,lastname,username,email,password,created_at) ";
+		//$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->email\",\"$this->password\",$this->created_at)";
+		$fs = Crudadmin::prepareFields(schema::$table_user,"add");
+		$vs = Crudadmin::prepareValues(schema::$table_user,$this,"add");
+		$fs[]="created_at";
+		$vs[]="NOW()";
+		$sql = Crudadmin::buildIFromFV(self::$tablename,$fs, $vs);
 		Executor::doit($sql);
 	}
 

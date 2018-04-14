@@ -14,5 +14,12 @@ include "controller/Action.php";
 
 include "controller/class.upload.php";
 
+// 14 abril 2018
+include "controller/Html.php";
+include "controller/Form.php";
+include "controller/Table.php";
+include "controller/Bs.php";
+include "controller/Crudadmin.php";
+
 
 ?>

@@ -5,10 +5,10 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>.: Lb-min - Evilnapsis :.</title>
-    <link href="res/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="res/font-awesome/css/font-awesome.min.css">
-    <script src="res/js/jquery.min.js"></script>
+    <?=Html::title('Lb-min v3 - Evilnapsis');?>
+    <?=Html::link('res/bootstrap/css/bootstrap.css'); ?>
+    <?=Html::link('res/font-awesome/css/fontawesome-all.min.css'); ?>
+    <?=Html::script('res/js/jquery.min.js'); ?>
   </head>
 
   <body>
@@ -27,6 +27,7 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="./"><i class='glyphicon glyphicon-home'></i> INICIO</a></li>
+        <li><a href="./?view=crud&sb=all"><i class='fa fa-cube'></i> CRUD</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='glyphicon glyphicon-th-large'></i> MAS <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -63,11 +64,10 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
 <div class="col-md-12">
 <br>
 <hr>
-<p class="text-muted text-center">Powered by <a href="http://evilnapsis.com/" target="_blank">Evilnapsis</a> &copy; 2017</p>
+<p class="text-muted text-center">Powered by <a href="http://evilnapsis.com/" target="_blank">Evilnapsis</a> &copy; 2018</p>
 </div>
 </div>
 </div>
-
-<script src="res/bootstrap/js/bootstrap.min.js"></script>
+<?= Html::script('res/bootstrap/js/bootstrap.min.js'); ?>
   </body>
 </html>
