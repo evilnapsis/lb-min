@@ -10,7 +10,7 @@
 <form method="post" action="./?action=users&sa=update" enctype="multipart/form-data">
 	<?php 
 	$user = UserData::getById($_GET["id"]);
-	Bs::render_edit(schema::$table_user,$user); ?>
+	Bs::render_edit(UserData::$schema,$user); ?>
 	<?=Bs::button('Actualizar','submit',"success"); 
 	?>
 </form>

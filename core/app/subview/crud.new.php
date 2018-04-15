@@ -9,9 +9,9 @@
 
 <form method="post" action="./?action=users&sa=add" enctype="multipart/form-data">
 	<?php 
-	Bs::render_new(schema::$table_user); 
+	Bs::render_new(UserData::$schema); 
 	?>
-	<?=Bs::button('Acceder','submit'); ?>
+	<?=Bs::button('Guardar','submit','primary'); ?>
 </form>
 
 </div>

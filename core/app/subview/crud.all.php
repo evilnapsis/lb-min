@@ -5,8 +5,8 @@
 <?=Bs::a("Nuevo","./?view=crud&sb=new");?>
 <br><br>
 <?php Core::getFlashes(); 
-$fields = Crudadmin::prepareFields(schema::$table_user,"view");
-$labels = Crudadmin::prepareLabels(schema::$table_user,"view");
+$fields = Crudadmin::prepareFields(UserData::$schema,"view");
+$labels = Crudadmin::prepareLabels(UserData::$schema,"view");
 $users = UserData::getAll();
 $tablearray = array();
 $labels[] = "";
