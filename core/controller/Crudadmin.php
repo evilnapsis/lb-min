@@ -52,7 +52,7 @@ class Crudadmin{
 		foreach($schema as $k=>$v){
 			if(in_array($action, explode(",", $v["actions"]))){
 				$val = $ths->{$k};
-				if( !is_numeric($val) && $val!="NOW()" ){
+				if( !is_numeric($val) && $val!="NOW()" && $val!="NULL"){
 					$val = "\"".$val."\"";
 				}
 				$values[] = $val;

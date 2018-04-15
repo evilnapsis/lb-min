@@ -69,9 +69,8 @@ class Bs {
       }
     }
    }
-
-   public static function select($label,$name_id,$data,$selected="",$cl='form-control'){
-
+   // funcion para generar un select apartir de un array de datos proporcionados
+   public static function select($label,$name_id,$data,$selected="",$cl='form-control'){  
        $html= '<div class="form-group">';
        $html.='<label for="'.$name_id.'">'.$label.'</label>';
        $html.='<select $required name="'.$name_id.'" class="'.$cl.'" id="'.$name_id.'">';

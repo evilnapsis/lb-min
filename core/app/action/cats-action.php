@@ -1,17 +1,17 @@
 <?php
 
 if(Core::g("opt","add")){
-if(Crudadmin::valid(schema::$category)){
-	Crudadmin::add(schema::$category,new CategoryData(), Core::$post);
+if(Crudadmin::valid(CategoryData::$schema)){
+	Crudadmin::add(CategoryData::$schema,new CategoryData(), Core::$post);
 
 	Core::addFlash("info","Nueva categoria agregado exitosamente!");
 }
 Core::redir("./?view=cats&opt=all");
 }
 else if(Core::g("opt","update")){
-if(Crudadmin::valid(schema::$category)){
+if(Crudadmin::valid(CategoryData::$schema)){
 	$user = CategoryData::getById(Core::$post["id"]);
-	Crudadmin::update(schema::$category,$user, Core::$post);
+	Crudadmin::update(CategoryData::$schema,$user, Core::$post);
 	Core::addFlash("success","Categoria actualizada exitosamente!");
 }
 Core::redir("./?view=cats&opt=all");

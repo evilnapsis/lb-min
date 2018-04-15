@@ -8,8 +8,8 @@ if(Core::g("opt","all")):
 <?=Bs::a("Nuevo","./?view=products&opt=new");?>
 <br><br>
 <?php Core::getFlashes(); 
-$fields = Crudadmin::prepareFields(schema::$product,"view");
-$labels = Crudadmin::prepareLabels(schema::$product,"view");
+$fields = Crudadmin::prepareFields(ProductData::$schema,"view");
+$labels = Crudadmin::prepareLabels(ProductData::$schema,"view");
 $users = ProductData::getAll();
 $tablearray = array();
 $labels[] = "";
@@ -75,12 +75,12 @@ endif;
 
 <form method="post" action="./?action=products&opt=add" enctype="multipart/form-data">
 	<?php 
-	Bs::render_new(schema::$product,"add1");
+	Bs::render_new(ProductData::$schema,"add1");
 	$select = array();
 	$select[] = array("k"=>"","l"=>"-- SELECCIONE --");
 	foreach(CategoryData::getAll() as $c){ $select[] = array("k"=>$c->id,"l"=>$c->name); }
-	Bs::select("category_id",$select,""); 
-	Bs::render_new(schema::$product,"add2");
+	Bs::select("Categoria", "category_id",$select,""); 
+	Bs::render_new(ProductData::$schema,"add2");
 	?>
 	<?=Bs::button('Agregar','submit'); ?>
 </form>
@@ -96,8 +96,8 @@ endif;
 <div class="container">
 <div class="row">
 <div class="col-md-12">
-<h1>USUARIOS</h1>
-<h3>Editar Usuario</h3>
+<h1>PRODUCTS</h1>
+<h3>Editar Producto</h3>
 <div class="panel panel-default">
 <div class="panel-heading">Editar</div>
 <div class="panel-body">
@@ -105,13 +105,13 @@ endif;
 <form method="post" action="./?action=products&opt=update" enctype="multipart/form-data">
 	<?php 
 	$user = ProductData::getById($_GET["id"]);
-	Bs::render_edit(schema::$product,$user,"add1");
+	Bs::render_edit(ProductData::$schema,$user,"add1");
 		$select = array();
 	$select[] = array("k"=>"","l"=>"-- SELECCIONE --");
 	foreach(CategoryData::getAll() as $c){ $select[] = array("k"=>$c->id,"l"=>$c->name); }
 	Bs::select("Categoria", "category_id",$select,$user->category_id); 
  
-	Bs::render_edit(schema::$product,$user,"add2"); 
+	Bs::render_edit(ProductData::$schema,$user,"add2"); 
 
 	?>
 	<?=Bs::button('Actualizar','submit',"success"); 

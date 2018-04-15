@@ -1,8 +1,12 @@
 <?php
 class CategoryData {
 	public static $tablename = "category";
+	public static $schema = array(
+		"id"=>array("key"=>"ai","label"=>"","form"=>"hidden","required"=>"","actions"=>"edit"),
+		"name"=>array("label"=>"Nombre","form"=>"text","required"=>"","actions"=>"add,edit,view")
+	);
 
-	public function Categorydata(){
+	public function CategoryData(){
 		$this->name = "";
 		$this->lastname = "";
 		$this->username = "";
@@ -12,8 +16,8 @@ class CategoryData {
 	}
 
 	public function add(){
-		$fs = Crudadmin::prepareFields(schema::$category,"add");
-		$vs = Crudadmin::prepareValues(schema::$category,$this,"add");
+		$fs = Crudadmin::prepareFields(self::$schema,"add");
+		$vs = Crudadmin::prepareValues(self::$schema,$this,"add");
 		$sql = Crudadmin::buildIFromFV(self::$tablename,$fs, $vs);
 		Executor::doit($sql);
 	}
@@ -29,8 +33,8 @@ class CategoryData {
 	}
 
 	public function update(){
-		$fs = Crudadmin::prepareFields(schema::$category,"edit");
-		$vs = Crudadmin::prepareValues(schema::$category,$this,"edit");
+		$fs = Crudadmin::prepareFields(self::$schema,"edit");
+		$vs = Crudadmin::prepareValues(self::$schema,$this,"edit");
 		$sql = Crudadmin::buildUFromFV(self::$tablename,$fs, $vs,$this->id);
 		Executor::doit($sql);
 	}

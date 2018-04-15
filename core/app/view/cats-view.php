@@ -8,8 +8,8 @@ if(Core::g("opt","all")):
 <?=Bs::a("Nuevo","./?view=cats&opt=new");?>
 <br><br>
 <?php Core::getFlashes(); 
-$fields = Crudadmin::prepareFields(schema::$category,"view");
-$labels = Crudadmin::prepareLabels(schema::$category,"view");
+$fields = Crudadmin::prepareFields(CategoryData::$schema,"view");
+$labels = Crudadmin::prepareLabels(CategoryData::$schema,"view");
 $users = CategoryData::getAll();
 $tablearray = array();
 $labels[] = "";
@@ -48,7 +48,7 @@ $tablearray["body"]=$data;
 
 <form method="post" action="./?action=cats&opt=add" enctype="multipart/form-data">
 	<?php 
-	Bs::render_new(schema::$category); 
+	Bs::render_new(CategoryData::$schema); 
 	?>
 	<?=Bs::button('Agregar','submit'); ?>
 </form>
@@ -73,7 +73,7 @@ $tablearray["body"]=$data;
 <form method="post" action="./?action=cats&opt=update" enctype="multipart/form-data">
 	<?php 
 	$user = CategoryData::getById($_GET["id"]);
-	Bs::render_edit(schema::$category,$user); ?>
+	Bs::render_edit(CategoryData::$schema,$user); ?>
 	<?=Bs::button('Actualizar','submit',"success"); 
 	?>
 </form>

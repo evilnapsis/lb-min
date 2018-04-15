@@ -69,6 +69,14 @@ class Core {
 		return $ret;
 	}
 
+	public static function num($n){
+		if(is_numeric($n)){
+			return number_format($n,2,".",",");
+		}else{
+			return $n;
+		}
+	}
+
 	public static function includeJS(){
 		$path = "res/js/";
 		$handle=opendir($path);
