@@ -8,7 +8,7 @@ class Crudadmin{
 
 	public static function add($schema,$model,$data){
 		foreach($schema as $k =>$v){
-			if($v["form"]!="hidden"){
+			if($v["form"]!="hidden" && in_array("add", explode(",", $v["actions"]))){
 				$model->{$k} = Core::$post[$k];
 			}
 		}
