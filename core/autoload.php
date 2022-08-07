@@ -14,5 +14,7 @@ include "controller/Action.php";
 
 include "controller/class.upload.php";
 
+// 6 Agosto 2022
+include "controller/Extra.php";
 
 ?>

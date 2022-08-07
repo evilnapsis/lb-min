@@ -1,8 +1,11 @@
 <?php
-class UserData {
+class UserData extends Extra{
 	public static $tablename = "user";
+	public $extra_fields;
+	public $extra_fields_strings;
 
-	public function Userdata(){
+	public function __construct(){
+		$this->extra_fields = array();
 		$this->name = "";
 		$this->lastname = "";
 		$this->username = "";
@@ -10,6 +13,18 @@ class UserData {
 		$this->password = "";
 		$this->created_at = "NOW()";
 	}
+
+
+
+
+	public function register(){
+
+		print_r($this->extra_fields);
+		$sql = "insert into user (name,lastname,username,email,password,created_at) ";
+		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->email\",\"$this->password\",$this->created_at)";
+		Executor::doit($sql);
+	}
+
 
 	public function add(){
 		$sql = "insert into user (name,lastname,username,email,password,created_at) ";

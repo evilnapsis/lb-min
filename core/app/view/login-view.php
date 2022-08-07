@@ -1,14 +1,16 @@
 <div class="container">
 <div class="row">
-<h1 class="text-center">EVILNAPSIS</h1>
+<h1 class="text-center">LOGIN</h1>
 <div class="col-md-12">
+<br><br><br>
 <div class="row">
-<div class="col-md-4 col-md-offset-4">
-<div class="panel panel-default">
-<div class="panel-heading text-center">Login</div>
-<div class="panel-body">
+  <div class="col-md-4"></div>
+<div class="col-md-4">
+<div class="card">
+<div class="card-header text-center">Iniciar sesion</div>
+<div class="card-body">
 
-<form method="post" action="./?action=access&o=login">
+<form method="post" action="./?action=access&opt=login">
   <div class="form-group">
     <label for="exampleInputEmail1">Nombre de usuario</label>
     <input type="text" required name="username" class="form-control" id="exampleInputEmail1" placeholder="Nombre de usuario">
@@ -17,11 +19,15 @@
     <label for="exampleInputPassword1">Password</label>
     <input type="password" required name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
-  <button type="submit" class="btn btn-default">Acceder</button>
+  <div class="d-grid gap-2">
+  <button type="submit" class="btn btn-secondary ">Acceder</button>
+</div>
 </form>
 
 </div>
 </div>
+<br><br><br>
+
 </div>
 
 

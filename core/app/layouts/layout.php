@@ -6,52 +6,62 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
   <head>
     <meta charset="utf-8">
     <title>.: Lb-min - Evilnapsis :.</title>
-    <link href="res/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="res/font-awesome/css/font-awesome.min.css">
-    <script src="res/js/jquery.min.js"></script>
+    <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css">
+    <script src="assets/jquery/jquery.min.js"></script>
   </head>
 
   <body>
-<nav class="navbar navbar-default">
+
+
+
+<nav class="navbar navbar-expand-lg bg-light">
   <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="./"><b>LB MIN</b></a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="./"><i class='glyphicon glyphicon-home'></i> INICIO</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='glyphicon glyphicon-th-large'></i> MAS <span class="caret"></span></a>
+    <a class="navbar-brand" href="./">LegoBox</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="./">Inicio</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Mas
+          </a>
           <ul class="dropdown-menu">
-            <li><a href="./?view=login">Login</a></li>
-            <li><a href="./?view=help">Ayuda</a></li>
+            <li><a class="dropdown-item" href="./?view=register">Registro</a></li>
+            <li><a class="dropdown-item" href="./?view=login">Login</a></li>
+            <li><a class="dropdown-item" href="./?view=help">Ayuda</a></li>
           </ul>
         </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
         <?php if(isset($_SESSION["user_id"])):?>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> <span class="caret"></span></a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Usuario
+          </a>
           <ul class="dropdown-menu">
-            <li><a href="./?view=home">Mi inicio</a></li>
-            <li><a href="./?view=users&o=all">Usuarios</a></li>
-            <li class="divider"></li>
-            <li><a href="./?view=access&o=logout">Salir</a></li>
+            <li><a class="dropdown-item" href="./?view=home">Mi Inicio</a></li>
+            <li><a class="dropdown-item" href="./?view=persons&opt=all">Contactos</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="./?action=access&opt=logout">Salir</a></li>
           </ul>
         </li>
-        <?php endif; ?>
+      <?php endif; ?>
       </ul>
-
+      <!--
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    -->
     </div>
   </div>
+
 </nav>
+
+
 
 
 <?php 
@@ -63,11 +73,11 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
 <div class="col-md-12">
 <br>
 <hr>
-<p class="text-muted text-center">Powered by <a href="http://evilnapsis.com/" target="_blank">Evilnapsis</a> &copy; 2017</p>
+<p class="text-muted text-center">Powered by <a href="http://evilnapsis.com/" target="_blank">Evilnapsis</a> &copy; 2022</p>
 </div>
 </div>
 </div>
 
-<script src="res/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
