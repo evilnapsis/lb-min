@@ -37,19 +37,6 @@ class Form
 		return $select;
 	}
 
-	public static function upload($name_field, $file_location){
-		$filename = "";
-		$up = new Upload($_FILES[$name_field]);
-		if($up->uploaded){
-			$up->Process($file_location);
-			if($up->processed){
-				$filename = $up->file_dst_name;
-			}
-		}
-		return $filename;
-
-	}
-
 }
 
 

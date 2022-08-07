@@ -1,7 +1,3 @@
-/* 
-@author: evilnapsis
-@brief: updated 2018 
-*/
 create database lbmin;
 use lbmin;
 
@@ -24,6 +20,7 @@ create table user(
 * kind: 1. root, 2. other, ...
 **/
 
+/* insert user example */
 insert into user (name,username,password,created_at) value ("Administrator","admin",sha1(md5("admin")),NOW());
 
 
@@ -38,18 +35,3 @@ create table person(
 	created_at datetime
 );
 
-create table category(
-	id int not null auto_increment primary key,
-	name varchar(50)
-);
-
-create table product(
-	id int not null auto_increment primary key,
-	name varchar(50),
-	description varchar(255),
-	image varchar(50),
-	price double,
-	category_id int,
-	created_at datetime,
-	foreign key (category_id) references category(id)
-);
