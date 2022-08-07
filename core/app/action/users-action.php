@@ -8,6 +8,7 @@ if(count($_POST)>0){
 
 	$user->addExtraFieldString("name", htmlentities($_POST["name"]));
 	$user->addExtraFieldString("lastname", htmlentities($_POST["lastname"]));
+	$user->addExtraField("kind", 2);
 
 	$user->email = htmlentities($_POST["email"]);
 	$user->password = sha1(md5(htmlentities($_POST["password"])));
@@ -21,12 +22,12 @@ if(count($_POST)>0){
 	$user = new UserData();
 	$user->name = $_POST["name"];
 	$user->lastname = $_POST["lastname"];
-	$user->username = $_POST["username"];
+	$user->kind = $_POST["kind"];
 	$user->email = $_POST["email"];
 	$user->password = sha1(md5($_POST["password"]));
 	$user->add();
-	Core::alert("Usuario eliminado!");
-	Core::redir("./?view=users");
+	Core::alert("Usuario agregado!");
+	Core::redir("./?view=users&opt=all");
 }
 }
 else if(isset($_GET["opt"]) && $_GET["opt"]=="upd"){
@@ -34,8 +35,8 @@ if(count($_POST)>0){
 	$user = UserData::getById($_POST["user_id"]);
 	$user->name = $_POST["name"];
 	$user->lastname = $_POST["lastname"];
-	$user->username = $_POST["username"];
 	$user->email = $_POST["email"];
+	$user->kind = $_POST["kind"];
 	$user->update();
 
 	if($_POST["password"]!=""){
@@ -44,16 +45,17 @@ if(count($_POST)>0){
 		Core::alert("Se ha actualizado el password!");
 	}
 	Core::alert("Usuario actualizado!");
-	Core::redir("./?view=users&o=all");
+	Core::redir("./?view=users&opt=all");
 }
 }
 else if(isset($_GET["opt"]) && $_GET["opt"]=="del"){
 	$user = UserData::getById($_GET["id"]);
+    $_SESSION['user_id'];
 	if($user->id!=$_SESSION["user_id"]){
 		$user->del();
 	}
 	Core::alert("Usuario eliminado!");
-	Core::redir("./?view=users&o=all");
+	Core::redir("./?view=users&opt=all");
 }
 
 

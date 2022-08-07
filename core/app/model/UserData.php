@@ -25,8 +25,8 @@ class UserData extends Extra{
 
 
 	public function add(){
-		$sql = "insert into user (name,lastname,username,email,password,created_at) ";
-		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->username\",\"$this->email\",\"$this->password\",$this->created_at)";
+		$sql = "insert into user (name,lastname,email,password,kind,created_at) ";
+		$sql .= "value (\"$this->name\",\"$this->lastname\",\"$this->email\",\"$this->password\",$this->kind,$this->created_at)";
 		Executor::doit($sql);
 	}
 
@@ -41,7 +41,7 @@ class UserData extends Extra{
 	}
 
 	public function update(){
-		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",username=\"$this->username\",lastname=\"$this->lastname\",status=\"$this->status\",kind=\"$this->kind\" where id=$this->id";
+		$sql = "update ".self::$tablename." set name=\"$this->name\",lastname=\"$this->lastname\",lastname=\"$this->lastname\",status=\"$this->status\",kind=\"$this->kind\" where id=$this->id";
 		Executor::doit($sql);
 	}
 
