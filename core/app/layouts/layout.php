@@ -44,6 +44,7 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="./?view=home">Mi Inicio</a></li>
             <li><a class="dropdown-item" href="./?view=persons&opt=all">Contactos</a></li>
+            <li><a class="dropdown-item" href="./?view=users&opt=all">Usuarios</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="./?action=access&opt=logout">Salir</a></li>
           </ul>

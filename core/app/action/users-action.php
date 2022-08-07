@@ -1,6 +1,5 @@
 <?php
 if(isset($_GET["opt"]) && $_GET["opt"]=="register"){
-	print_r($_POST);
 if(count($_POST)>0){
 
 

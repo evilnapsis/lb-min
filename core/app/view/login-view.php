@@ -12,8 +12,8 @@
 
 <form method="post" action="./?action=access&opt=login">
   <div class="form-group">
-    <label for="exampleInputEmail1">Nombre de usuario</label>
-    <input type="text" required name="username" class="form-control" id="exampleInputEmail1" placeholder="Nombre de usuario">
+    <label for="exampleInputEmail1">Correo Electronico</label>
+    <input type="text" required name="email" class="form-control" id="exampleInputEmail1" placeholder="Correo Electronico">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>

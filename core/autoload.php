@@ -2,7 +2,7 @@
 
 include "controller/Core.php";
 include "controller/View.php";
-include "controller/Module.php";
+//include "controller/Module.php"; // Renamed to Layout
 include "controller/Database.php";
 include "controller/Executor.php";
 
@@ -16,5 +16,6 @@ include "controller/class.upload.php";
 
 // 6 Agosto 2022
 include "controller/Extra.php";
+include "controller/Layout.php";
 
 ?>
