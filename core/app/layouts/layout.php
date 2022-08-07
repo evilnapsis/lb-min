@@ -9,6 +9,8 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
     <link href="assets/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css">
     <script src="assets/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/datatables/datatables.min.css">
+    <script src="assets/datatables/datatables.min.js"></script>
   </head>
 
   <body>
@@ -78,7 +80,11 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
 </div>
 </div>
 </div>
-
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".datatable").DataTable();
+  });
+</script>
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

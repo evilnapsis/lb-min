@@ -17,7 +17,7 @@ if(isset($_GET["opt"]) && $_GET["opt"]=="all"):?>
 		if(count($users)>0){
 			?>
 			<div class="box box-primary">
-			<table class="table table-bordered datatable table-hover">
+			<table class="table datatable table-bordered datatable table-hover">
 			<thead>
 			<th>Nombre completo</th>
 			<th>Email</th>
