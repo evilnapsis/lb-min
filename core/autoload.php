@@ -17,5 +17,8 @@ include "controller/class.upload.php";
 // 6 Agosto 2022
 include "controller/Extra.php";
 include "controller/Layout.php";
+// 8 Agosto 2022
+include "controller/FormTool.php";
+include "controller/TableTool.php";
 
 ?>

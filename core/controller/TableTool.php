@@ -2,7 +2,14 @@
 
 
 
-class Table {
+class TableTool {
+
+	public static $table_header;
+
+	public static function setHeader($thead){
+		self::$table_header = $thead;
+
+	}
 
 	public static function render($data=array(), $extra=""){
 		$table = "<table class=\"table table-bordered\">";
@@ -21,6 +28,15 @@ class Table {
 		$table .="</table>";
 		return $table;
 	}
+
+		public static function getHeader(){
+		echo "<thead>";
+		for($i=0; $i<count(self::$table_header);$i++){
+			echo "<th>".self::$table_header[$i]."</th>";
+		}
+		echo "</thead>";
+	}
+
 
 }
 

@@ -6,7 +6,7 @@
 * Clase para crear inputs y selects de formularios
 **/
 
-class Form 
+class FormTool 
 {
 	
 	public static function input($type="text",$name="",$value="",$place="",$extra="")
@@ -37,6 +37,19 @@ class Form
 		return $select;
 	}
 
+
+	public static function addInput( $type, $name,$tag, $extra ){
+		echo   "<div class='form-group'>
+    <label for='exampleInputEmail1'>$tag</label>
+    <input type='$type' name='$name' class='form-control' id='$name' placeholder='$tag' $extra>
+  </div>";
+	}
+	public static function addInputVal( $type, $name,$value, $tag, $extra ){
+		echo   "<div class='form-group'>
+    <label for='exampleInputEmail1'>$tag</label>
+    <input type='$type' name='$name' value='$value' class='form-control' id='$name' placeholder='$tag' $extra>
+  </div>";
+	}
 }
 
 
