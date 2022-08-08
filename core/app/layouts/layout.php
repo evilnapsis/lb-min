@@ -49,6 +49,8 @@ Este es el layout principal, a partir de este layout o plantilla se muestran el 
             <li><a class="dropdown-item" href="./?view=personsmod&opt=all">Contactos (v2)</a></li>
             <li><a class="dropdown-item" href="./?view=users&opt=all">Usuarios</a></li>
             <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="./?view=settings&opt=all">Ajustes</a></li>
+            <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="./?action=access&opt=logout">Salir</a></li>
           </ul>
         </li>

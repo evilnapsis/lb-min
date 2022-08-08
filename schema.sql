@@ -35,3 +35,16 @@ create table person(
 	created_at datetime
 );
 
+create table setting(
+	id int not null auto_increment primary key,
+	name varchar(100) not null unique,
+	label varchar(200) not null,
+	kind int,
+	val text,
+	cfg_id int default 1
+);
+
+insert into setting(name,label,kind,val) value ("general_main_title","Titulo Principal",1,"LEGOBOX");
+insert into setting(name,label,kind,val) value ("general_version","Titulo Principal",1,"v4");
+insert into setting(name,label,kind,val) value ("general_author","Titulo Principal",1,"Evilnapsis");
+insert into setting(name,label,kind,val) value ("general_year","Titulo Principal",1,"2022");
