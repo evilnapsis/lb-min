@@ -5,8 +5,8 @@
 * Fecha: 28/07/2026
 * Version: 5.0.0
 **/
-create database lbmin5;
-use lbmin5;
+create database lbmin;
+use lbmin;
 
 create table user(
 	id int not null auto_increment primary key,
