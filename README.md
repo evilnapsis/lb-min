@@ -277,8 +277,14 @@ Crea la plantilla extendiendo de `layouts/main.html.twig`:
 
 ---
 
-## Créditos y Autor
+## Créditos e Historia
 
-Desarrollado y mantenido por **Evilnapsis**  
-Sitio Web: [http://evilnapsis.com](http://evilnapsis.com)  
-Año: **2026**
+* **Creador y Desarrollador**: **Evilnapsis**  
+* **Sitio Web**: [http://evilnapsis.com](http://evilnapsis.com)
+
+### Cronología de Versiones
+* **v1**: 2016
+* **v2**: 2017
+* **v3**: 2019
+* **v4**: 2021
+* **v5**: 2026
