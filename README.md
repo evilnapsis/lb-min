@@ -277,7 +277,7 @@ Crea la plantilla extendiendo de `layouts/main.html.twig`:
 
 ---
 
-## Créditos e Historia
+## Créditos 
 
 * **Creador y Desarrollador**: **Evilnapsis**  
 * **Sitio Web**: [http://evilnapsis.com](http://evilnapsis.com)
