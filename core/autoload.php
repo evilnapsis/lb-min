@@ -9,6 +9,7 @@ include "controller/Executor.php";
 // 10 octubre 2014
 include "controller/Lb.php";
 include "controller/Model.php";
+include "controller/LbModel.php";
 include "controller/Bootload.php";
 include "controller/Action.php";
 
@@ -21,4 +22,11 @@ include "controller/Layout.php";
 include "controller/FormTool.php";
 include "controller/TableTool.php";
 
+
+// 28 Julio 2026
+include "controller/Session.php";
+include "controller/Request.php";
+include "controller/Response.php";
+include "controller/ViewEngine.php";
+include __DIR__ . "/app/autoload.php";
 ?>

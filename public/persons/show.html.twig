@@ -1,0 +1,44 @@
+{% extends "layouts/main.html.twig" %}
+
+{% block title %}Detalle de Persona{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white py-3 d-flex justify-content-between align-items-center">
+                <h4 class="mb-0 fw-bold">Detalle de Persona</h4>
+                <a href="{{ base_url }}/persons" class="btn btn-light btn-sm text-primary fw-semibold">Volver</a>
+            </div>
+            <div class="card-body p-4">
+                {% if person %}
+                    <div class="mb-3 border-bottom pb-2">
+                        <small class="text-muted text-uppercase fw-bold">Nombre Completo</small>
+                        <h4 class="text-dark mb-0">{{ person.name }} {{ person.lastname }}</h4>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <small class="text-muted text-uppercase fw-bold">Email</small>
+                            <p class="fs-6 mb-0">{{ person.email ? person.email : 'N/A' }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <small class="text-muted text-uppercase fw-bold">Teléfono</small>
+                            <p class="fs-6 mb-0">{{ person.phone ? person.phone : 'N/A' }}</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <small class="text-muted text-uppercase fw-bold">Dirección</small>
+                        <p class="fs-6 mb-0">{{ person.address ? person.address : 'N/A' }}</p>
+                    </div>
+                    <div class="mt-4 pt-2 border-top d-flex gap-2">
+                        <a href="{{ base_url }}/person/{{ person.id }}/edit" class="btn btn-warning">Editar</a>
+                        <a href="{{ base_url }}/persons" class="btn btn-secondary">Volver al listado</a>
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning mb-0">Persona no encontrada.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

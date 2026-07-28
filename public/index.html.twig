@@ -1,0 +1,162 @@
+{% extends "layouts/main.html.twig" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="p-5 mb-5 bg-white rounded-3 shadow-sm border text-center">
+    <div class="container-fluid py-3">
+        <h1 class="display-4 fw-bold text-primary mb-3">LegoBox v5 Framework</h1>
+        <p class="col-md-9 mx-auto fs-5 text-muted">
+            Un micro-framework PHP ultraligero y moderno adaptado con arquitectura desacoplada, plantillas Twig, enrutado FastRoute y ORM con PDO.
+        </p>
+        <div class="mt-4">
+            {% if session.user_id %}
+                <a class="btn btn-primary btn-lg px-4 me-2 fw-semibold" href="{{ base_url }}/persons" role="button">
+                    <i class="bi bi-people me-2"></i>Gestionar Personas
+                </a>
+            {% else %}
+                <a class="btn btn-primary btn-lg px-4 me-2 fw-semibold" href="{{ base_url }}/login" role="button">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+                </a>
+            {% endif %}
+            <a class="btn btn-outline-secondary btn-lg px-4 fw-semibold" href="http://evilnapsis.com" target="_blank" role="button">
+                Documentación
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section: 8 Cards -->
+<div class="mb-4">
+    <h3 class="fw-bold mb-4 text-center">Características y Mejoras del Framework</h3>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        
+        <!-- Card 1 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="fs-2 text-primary"><i class="bi bi-filetype-html"></i></div>
+                        <span class="badge bg-warning text-dark fw-bold">NUEVO</span>
+                    </div>
+                    <h5 class="card-title fw-bold">Motor Twig</h5>
+                    <p class="card-text text-muted small">
+                        Carga y renderizado de plantillas HTML desacopladas en la carpeta <code>public/</code> mediante el motor Twig 3.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="fs-2 text-primary"><i class="bi bi-signpost-split"></i></div>
+                        <span class="badge bg-warning text-dark fw-bold">NUEVO</span>
+                    </div>
+                    <h5 class="card-title fw-bold">FastRoute</h5>
+                    <p class="card-text text-muted small">
+                        Sistema de enrutamiento limpio basadas en expresiones regulares (`/persons`, `/person/1`) reemplazando los parámetros query.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="fs-2 text-primary"><i class="bi bi-database-check"></i></div>
+                        <span class="badge bg-warning text-dark fw-bold">NUEVO</span>
+                    </div>
+                    <h5 class="card-title fw-bold">Mini-ORM LbModel</h5>
+                    <p class="card-text text-muted small">
+                        ORM activo con PDO Prepared Statements para prevención total de Inyección SQL y métodos <code>find()</code>, <code>all()</code> y <code>save()</code>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="fs-2 text-primary"><i class="bi bi-gear-wide-connected"></i></div>
+                        <span class="badge bg-warning text-dark fw-bold">NUEVO</span>
+                    </div>
+                    <h5 class="card-title fw-bold">Capa Services</h5>
+                    <p class="card-text text-muted small">
+                        Aislamiento de la lógica de negocio en clases como <code>AuthService</code> y <code>PersonService</code> para código limpio.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="fs-2 text-primary"><i class="bi bi-cpu"></i></div>
+                        <span class="badge bg-warning text-dark fw-bold">NUEVO</span>
+                    </div>
+                    <h5 class="card-title fw-bold">Autoload PSR-4</h5>
+                    <p class="card-text text-muted small">
+                        Carga automática de clases según el estándar PSR-4 de Composer optimizado para alto rendimiento en hosting.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="fs-2 text-primary"><i class="bi bi-layout-text-window-reverse"></i></div>
+                    </div>
+                    <h5 class="card-title fw-bold">Layouts Reutilizables</h5>
+                    <p class="card-text text-muted small">
+                        Plantilla principal heredable que maneja la estructura común HTML, navbars dinámicos y pie de página.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="fs-2 text-primary"><i class="bi bi-shield-lock"></i></div>
+                    </div>
+                    <h5 class="card-title fw-bold">Autenticación</h5>
+                    <p class="card-text text-muted small">
+                        Gestión nativa de inicio de sesión, sesiones seguras en PHP y middleware de protección de rutas privadas.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="fs-2 text-primary"><i class="bi bi-speedometer2"></i></div>
+                    </div>
+                    <h5 class="card-title fw-bold">Desarrollo Ágil</h5>
+                    <p class="card-text text-muted small">
+                        Arquitectura ligera enfocada en desarrollo rápido de aplicaciones web con mínimo consumo de recursos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

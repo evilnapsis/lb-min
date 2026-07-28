@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LegoBox v5{% endblock %}</title>
+    <link rel="stylesheet" href="{{ base_url }}/assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ base_url }}/assets/bootstrap-icons/bootstrap-icons.css">
+</head>
+<body class="bg-light text-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="{{ base_url }}/">
+                <i class="bi bi-box-seam me-2"></i>LegoBox v5
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a href="{{ base_url }}/" class="nav-link text-white">Inicio</a>
+                    </li>
+                    {% if session.user_id %}
+                    <li class="nav-item">
+                        <a href="{{ base_url }}/persons" class="nav-link text-white">Personas</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <div class="d-flex align-items-center">
+                    {% if session.user_id %}
+                        <span class="text-white me-3 fw-semibold">Hola, {{ session.user_name }}</span>
+                        <a href="{{ base_url }}/logout" class="btn btn-outline-light btn-sm">Salir</a>
+                    {% else %}
+                        <a href="{{ base_url }}/login" class="btn btn-light text-primary fw-semibold btn-sm">Iniciar Sesión</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pb-5">
+        {% for type, message in flashes %}
+            <div class="alert alert-{{ type == 'error' ? 'danger' : (type == 'success' ? 'success' : 'info') }} alert-dismissible fade show shadow-sm" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="footer mt-auto py-3 bg-white border-top text-center text-muted">
+        <div class="container">
+            <small>Powered by <a href="http://evilnapsis.com" target="_blank" class="text-decoration-none fw-semibold">Evilnapsis</a> &copy; 2026 - LegoBox v5 Framework</small>
+        </div>
+    </footer>
+</body>
+</html>

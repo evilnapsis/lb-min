@@ -1,6 +1,7 @@
 <?php
-class SettingData {
+class SettingData extends LbModel {
 	public static $tablename = "setting";
+	public $id, $name, $label, $kind, $val, $cfg_id;
 
 
 	public function __consruct(){

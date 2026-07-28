@@ -63,6 +63,14 @@ class UserData extends Extra{
 		return Model::one($query[0],new UserData());
 	}
 
+	public static function getLogin($username,$password){
+		$db = static::getDb();
+		$stmt = $db->prepare("select * from ".self::$tablename." where (username = :u or email = :u) and password = :p and status = 1 limit 1");
+		$stmt->execute(['u' => $username, 'p' => $password]);
+		$stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, static::class);
+		return $stmt->fetch() ?: null;
+	}
+
 	public static function getBy($k,$v){
 		$sql = "select * from ".self::$tablename." where $k=\"$v\"";
 		$query = Executor::doit($sql);

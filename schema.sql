@@ -1,5 +1,12 @@
-create database lbmin;
-use lbmin;
+/**
+* Base de Datos LB-MIN-5
+* LB-MIN-5 es un framework php para desarrollo rapido
+* Creada por Evilnapsis
+* Fecha: 28/07/2026
+* Version: 5.0.0
+**/
+create database lbmin5;
+use lbmin5;
 
 create table user(
 	id int not null auto_increment primary key,

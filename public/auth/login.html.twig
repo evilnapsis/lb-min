@@ -1,0 +1,32 @@
+{% extends "layouts/main.html.twig" %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center py-4">
+    <div class="col-md-5 col-lg-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white text-center py-3">
+                <h4 class="mb-0 fw-bold">Iniciar Sesión</h4>
+            </div>
+            <div class="card-body p-4">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+
+                <form action="{{ base_url }}/login" method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label font-weight-bold">Usuario o Email</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="admin" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label font-weight-bold">Contraseña</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

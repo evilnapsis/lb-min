@@ -1,0 +1,45 @@
+{% extends "layouts/main.html.twig" %}
+
+{% block title %}Nueva Persona{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Agregar Nueva Persona</h4>
+                <a href="{{ base_url }}/persons" class="btn btn-secondary btn-sm">Volver</a>
+            </div>
+            <div class="card-body">
+                <form action="{{ base_url }}/person/create" method="POST">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" name="name" id="name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lastname" class="form-label">Apellido</label>
+                            <input type="text" name="lastname" id="lastname" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" id="email" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Teléfono</label>
+                            <input type="text" name="phone" id="phone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Dirección</label>
+                        <textarea name="address" id="address" class="form-control" rows="2"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Guardar Persona</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
