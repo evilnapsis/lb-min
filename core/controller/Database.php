@@ -4,8 +4,6 @@ class Database {
 	public static $con;
 	public static $pdo;
 
-	public $user, $pass, $host, $ddbb;
-
 	function __construct(){
 		$this->user="root";$this->pass="";$this->host="localhost";$this->ddbb="lbmin";
 	}

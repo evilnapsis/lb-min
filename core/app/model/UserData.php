@@ -4,8 +4,6 @@ class UserData extends Extra{
 	public $extra_fields;
 	public $extra_fields_strings;
 
-	public $id, $name, $lastname, $username, $email, $password, $kind, $status, $created_at, $image;
-
 	public function __construct(){
 		$this->extra_fields = array();
 		$this->extra_fields_strings = array();
