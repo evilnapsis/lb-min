@@ -61,6 +61,19 @@ class UserData extends Extra{
 		return Model::one($query[0],new UserData());
 	}
 
+	/**
+	 * Obtiene un usuario activo por su username o email para el proceso de autenticacion
+	 * @param string $username Nombre de usuario o correo electronico
+	 * @return UserData|null
+	 */
+	public static function getByUsernameOrEmail(string $username) {
+		$db = static::getDb();
+		$stmt = $db->prepare("select * from ".self::$tablename." where (username = :u or email = :u) and status = 1 limit 1");
+		$stmt->execute(['u' => $username]);
+		$stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, static::class);
+		return $stmt->fetch() ?: null;
+	}
+
 	public static function getLogin($username,$password){
 		$db = static::getDb();
 		$stmt = $db->prepare("select * from ".self::$tablename." where (username = :u or email = :u) and password = :p and status = 1 limit 1");

@@ -22,13 +22,13 @@ create table user(
 );
 
 /**
-* password: encrypted using sha1(md5("mypassword"))
+* password: encrypted using password_hash("mypassword", PASSWORD_DEFAULT)
 * status: 1. active, 2. inactive, 3. other, ...
 * kind: 1. root, 2. other, ...
 **/
 
-/* insert user example */
-insert into user (name,username,password,created_at) value ("Administrator","admin",sha1(md5("admin")),NOW());
+/* insert user example (password: admin) */
+insert into user (name,username,password,created_at) value ("Administrator","admin","$2y$10$3DB5LtASko0JijsfYgldgejESN29grOoBD5DXItvbGJRxQghuYN2O",NOW());
 
 
 create table person(

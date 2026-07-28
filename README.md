@@ -18,6 +18,7 @@
 * **Enrutador FastRoute**: URLs limpias y amigables (ej. `/persons`, `/person/1`) reemplazando los antiguos Query Strings (`?view=`).
 * **Mini-ORM LbModel (PDO)**: Consultas preparadas contra inyección SQL con métodos integrados (`find()`, `all()`, `where()`, `save()`, `delete()`).
 * **Capa de Servicios (`App\Service`)**: Separación clara de la lógica de negocio (`AuthService`, `PersonService`).
+* **Autenticación Segura (`password_hash` / `password_verify`)**: Encriptación de contraseñas con el estándar Bcrypt de PHP y soporte de migración transparente para hashes anteriores.
 * **Objeto Request y Validación de Formularios**: Manejo limpio de datos de entrada `Request::post()`, `Request::get()` y validación ligera `Request::validate()`.
 * **Helper de Respuestas API JSON (`Response::json()`)**: Construcción ultrarrápida de APIs RESTful.
 * **Mensajes Flash en Sesión**: Notificaciones informativas de un solo uso entre redirecciones (`Session::flash()`).
