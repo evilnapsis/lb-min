@@ -13,28 +13,10 @@ require_once __DIR__ . '/core/autoload.php';
 session_start();
 
 use App\Service\AuthService;
-use App\Service\PersonService;
 
-// Configuración de rutas de la aplicación utilizando FastRoute
-$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    // Rutas públicas y de autenticación
-    $r->addRoute('GET', '/', 'home_handler');
-    $r->addRoute('GET', '/login', 'show_login');
-    $r->addRoute('POST', '/login', 'process_login');
-    $r->addRoute('GET', '/logout', 'process_logout');
-
-    // Rutas CRUD del módulo de Personas
-    $r->addRoute('GET', '/persons', 'list_persons');
-    $r->addRoute('GET', '/person/new', 'show_new_person');
-    $r->addRoute('POST', '/person/create', 'process_create_person');
-    $r->addRoute('GET', '/person/{id:\d+}', 'show_person');
-    $r->addRoute('GET', '/person/{id:\d+}/edit', 'show_edit_person');
-    $r->addRoute('POST', '/person/{id:\d+}/update', 'process_update_person');
-    $r->addRoute('POST', '/person/{id:\d+}/delete', 'process_delete_person');
-
-    // Ruta de API RESTful en formato JSON
-    $r->addRoute('GET', '/api/persons', 'api_persons_list');
-});
+// Carga modular de las rutas
+$routes = require_once __DIR__ . '/core/app/routes.php';
+$dispatcher = FastRoute\simpleDispatcher($routes);
 
 // Captura del método HTTP y la URI de la solicitud
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -70,98 +52,29 @@ switch ($routeInfo[0]) {
         break;
 
     case FastRoute\Dispatcher::FOUND:
-        $handler = $routeInfo[1];
-        $vars = $routeInfo[2];
+        $handler = $routeInfo[1]; // Array: [ClaseController, Método]
+        $vars = $routeInfo[2];    // Variables de la URL (ej. id)
 
-        // Middleware de protección de rutas privadas (requieren autenticación)
-        $protectedHandlers = [
-            'list_persons', 'show_new_person', 'process_create_person',
-            'show_person', 'show_edit_person', 'process_update_person', 'process_delete_person'
-        ];
+        // Validación de seguridad CSRF para solicitudes POST (excepto APIs)
+        if ($httpMethod === 'POST' && strpos($uri, '/api/') !== 0) {
+            $token = $_POST['csrf_token'] ?? $_SERVER['HTTP_X_CSRF_TOKEN'] ?? null;
+            if (!Session::validateCsrf($token)) {
+                http_response_code(403);
+                echo "<html><head><title>403 Forbidden - CSRF Token Invalid</title><meta charset='UTF-8'></head><body style='font-family:sans-serif; text-align:center; padding-top:10%; background:#f8f9fa; color:#333;'><h1>403 Acceso Prohibido</h1><p>El token CSRF no es válido o ha expirado. Por favor, regresa, recarga el formulario e intenta de nuevo.</p></body></html>";
+                exit;
+            }
+        }
 
-        if (in_array($handler, $protectedHandlers) && !AuthService::check()) {
+        // Middleware de protección: si el controlador es de CRUD de personas, requiere autenticación
+        if ($handler[0] === App\Controller\PersonController::class && !AuthService::check()) {
             header('Location: ' . $baseFolder . '/login');
             exit;
         }
 
-        $personService = new PersonService();
-
-        // Ejecución del controlador/handler correspondiente a la ruta solicitada
-        switch ($handler) {
-            case 'home_handler':
-                ViewEngine::render('index.html.twig', ['title' => 'Inicio LegoBox']);
-                break;
-
-            case 'show_login':
-                ViewEngine::render('auth/login.html.twig');
-                break;
-
-            case 'process_login':
-                $auth = new AuthService();
-                if ($auth->login($_POST['username'] ?? '', $_POST['password'] ?? '')) {
-                    Session::flash('success', '¡Bienvenido de nuevo!');
-                    header('Location: ' . $baseFolder . '/persons');
-                } else {
-                    ViewEngine::render('auth/login.html.twig', ['error' => 'Credenciales inválidas']);
-                }
-                break;
-
-            case 'process_logout':
-                (new AuthService())->logout();
-                Session::flash('info', 'Has cerrado sesión correctamente.');
-                header('Location: ' . $baseFolder . '/login');
-                break;
-
-            case 'list_persons':
-                $persons = $personService->getAllPersons();
-                ViewEngine::render('persons/index.html.twig', ['persons' => $persons]);
-                break;
-
-            case 'show_new_person':
-                ViewEngine::render('persons/new.html.twig');
-                break;
-
-            case 'process_create_person':
-                $errors = Request::validate([
-                    'name' => 'required',
-                    'lastname' => 'required'
-                ]);
-                if (!empty($errors)) {
-                    Session::flash('error', implode(' ', $errors));
-                    header('Location: ' . $baseFolder . '/person/new');
-                    exit;
-                }
-                $personService->createPerson(Request::post());
-                Session::flash('success', 'Persona registrada correctamente.');
-                header('Location: ' . $baseFolder . '/persons');
-                break;
-
-            case 'show_person':
-                $person = $personService->getPersonById((int)$vars['id']);
-                ViewEngine::render('persons/show.html.twig', ['person' => $person]);
-                break;
-
-            case 'show_edit_person':
-                $person = $personService->getPersonById((int)$vars['id']);
-                ViewEngine::render('persons/edit.html.twig', ['person' => $person]);
-                break;
-
-            case 'process_update_person':
-                $personService->updatePerson((int)$vars['id'], Request::post());
-                Session::flash('success', 'Persona actualizada correctamente.');
-                header('Location: ' . $baseFolder . '/persons');
-                break;
-
-            case 'process_delete_person':
-                $personService->deletePerson((int)$vars['id']);
-                Session::flash('info', 'Persona eliminada correctamente.');
-                header('Location: ' . $baseFolder . '/persons');
-                break;
-
-            case 'api_persons_list':
-                $persons = $personService->getAllPersons();
-                Response::json(['status' => 'success', 'data' => $persons]);
-                break;
-        }
+        // Ejecución dinámica del controlador y su método
+        list($controllerClass, $method) = $handler;
+        $controller = new $controllerClass();
+        $controller->$method($vars);
         break;
 }
+?>

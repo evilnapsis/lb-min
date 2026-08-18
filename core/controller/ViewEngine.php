@@ -25,6 +25,12 @@ class ViewEngine {
             // Calculo de la URL base del proyecto para soportar subcarpetas dinamicamente
             $baseUrl = rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? ''), '/\\');
             self::$twig->addGlobal('base_url', $baseUrl);
+            
+            // Registro de globales y helpers para seguridad CSRF
+            self::$twig->addGlobal('csrf_token', Session::csrfToken());
+            self::$twig->addFunction(new \Twig\TwigFunction('csrf_field', function() {
+                return '<input type="hidden" name="csrf_token" value="' . Session::csrfToken() . '">';
+            }, ['is_safe' => ['html']]));
         }
         return self::$twig;
     }

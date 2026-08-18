@@ -31,6 +31,7 @@
                             <a href="{{ base_url }}/person/{{ person.id }}" class="btn btn-sm btn-info text-white">Ver</a>
                             <a href="{{ base_url }}/person/{{ person.id }}/edit" class="btn btn-sm btn-warning">Editar</a>
                             <form action="{{ base_url }}/person/{{ person.id }}/delete" method="POST" class="d-inline" onsubmit="return confirm('¿Seguro que deseas eliminar esta persona?');">
+                                {{ csrf_field() }}
                                 <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                             </form>
                         </td>

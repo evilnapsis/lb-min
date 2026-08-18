@@ -57,4 +57,29 @@ class Session {
         unset($_SESSION['flash']);
         return $flashes;
     }
+
+    /**
+     * Genera un token CSRF si no existe, y lo retorna
+     * @return string Token CSRF
+     */
+    public static function csrfToken(): string {
+        self::init();
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        return $_SESSION['csrf_token'];
+    }
+
+    /**
+     * Valida si un token es igual al almacenado en sesion
+     * @param string|null $token Token a verificar
+     * @return bool True si es valido, False en caso contrario
+     */
+    public static function validateCsrf(?string $token): bool {
+        self::init();
+        if (empty($_SESSION['csrf_token']) || empty($token)) {
+            return false;
+        }
+        return hash_equals($_SESSION['csrf_token'], $token);
+    }
 }
